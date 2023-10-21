@@ -27,6 +27,7 @@ export default function Scene({ ...props }) {
     <Canvas
       {...props}
       shadows
+      frameloop="demand"
       gl={{
         powerPreference: "high-performance",
         alpha: true,
