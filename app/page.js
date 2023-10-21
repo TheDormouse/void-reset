@@ -6,9 +6,12 @@ const Client = dynamic(() => import("./client"), { ssr: false });
 
 export default function Home() {
   return (
-    <View className={view}>
-      <ambientLight />
-      <Client />
-    </View>
+    <>
+      <h1 style={{ color: "white" }}>Hello</h1>
+      <View className={view}>
+        <ambientLight />
+        <Client />
+      </View>
+    </>
   );
 }

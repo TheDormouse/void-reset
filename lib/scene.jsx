@@ -2,7 +2,12 @@
 
 import { forwardRef, useImperativeHandle, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Preload } from "@react-three/drei";
+import {
+  Environment,
+  OrbitControls,
+  Preload,
+  StatsGl,
+} from "@react-three/drei";
 import { r3f } from "./rat";
 import { Three } from "./Three";
 import { View as ViewImpl } from "@react-three/drei";
@@ -14,6 +19,7 @@ import {
   Vignette,
   Bloom,
 } from "@react-three/postprocessing";
+import { Pathtracer } from "@react-three/gpu-pathtracer";
 
 export default function Scene({ ...props }) {
   // Everything defined in here will persist between route changes, only children are swapped
@@ -30,6 +36,7 @@ export default function Scene({ ...props }) {
       }}
     >
       <OrbitControls />
+
       <EffectComposer>
         <DepthOfField
           focusDistance={0}
@@ -42,8 +49,12 @@ export default function Scene({ ...props }) {
         <Vignette eskil={false} offset={0.1} darkness={1.1} />
       </EffectComposer>
       {/* @ts-ignore */}
+
       <r3f.Out />
+
+      <Environment preset="city" />
       <Preload all />
+      <StatsGl />
     </Canvas>
   );
 }
